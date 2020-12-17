@@ -1,4 +1,4 @@
-# Angular Diary
+# Todos List
 This project is built by Danish Ahmed.
 
 ## Getting Started
