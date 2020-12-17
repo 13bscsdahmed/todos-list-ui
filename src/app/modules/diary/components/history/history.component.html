@@ -1,0 +1,54 @@
+<div>
+  <div class="container pt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-sm-10">
+        
+        <!--Note form starts-->
+        <form class="border border-light p-5" [formGroup]="historyForm">
+          <p class="h4 mb-4 text-center">Get Notes</p>
+          
+          <div class="mb-3">
+            <input class="form-control" formControlName="date" type="date" (change)="getNotes(historyForm.controls.date.value.toString())">
+          </div>
+          
+          
+          <!-- Get notes button -->
+          <div class="text-center d-flex justify-content-between">
+            <button class="my-4 mx-auto" mdbBtn *ngIf="historyForm.controls.date.value !== ''" color="info" (click)="reset()"  type="submit">Show all notes</button>
+  
+            <button class="my-4 mx-auto" mdbBtn *ngIf="notes.length > 0" color="info" (click)="getCsv()">Download Csv</button>
+          </div>
+        </form>
+        <!-- Note form ends-->
+      
+      </div>
+    
+    </div>
+  
+  </div>
+  
+  <!--Notes display block-->
+  <div *ngIf="notes.length > 0; else elseBlock " class="container pt-5">
+    <div class="border border-light pt-2 px-3" *ngFor="let note of notes">
+      <p>
+        <span><b>Note:</b></span> {{note.text}}
+      </p>
+      <div class="d-flex notes-div justify-content-between">
+        <div><b>Date:</b>{{note.date}}</div>
+        <div><b>Picture:</b><a href="{{note.picture}}" target="_blank">{{note.picture}}</a></div>
+        <div><b>Video:</b><a href="{{note.video}}" target="_blank">{{note.video}}</a></div>
+      </div>
+      
+    </div>
+  </div>
+  <!--Notes display block ends-->
+  
+  <!--No notes found block-->
+  <ng-template #elseBlock>
+    <div class="d-flex justify-content-center container pt-5">
+      <div><b>No notes for the given date found</b></div>
+    </div>
+  </ng-template>
+  <!--No notes found block ends-->
+</div>
+

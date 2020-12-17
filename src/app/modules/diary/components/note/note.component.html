@@ -1,0 +1,43 @@
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-sm-10">
+      
+      <!--Note form starts-->
+      <form class="border border-light p-5" [formGroup]="noteForm">
+        <p class="h4 mb-4 text-center">Add New Note</p>
+    
+        <!-- Note -->
+        <div class="mb-3">
+          <input class="form-control" appFormControlValidationMsg validationMsgId="note" formControlName="note" placeholder="Note">
+        </div>
+        
+  
+        <!-- Picture -->
+        <div class="mb-3">
+          <input class="form-control" appFormControlValidationMsg validationMsgId="picture" formControlName="picture" placeholder="Picture Link">
+        </div>
+        
+  
+        <!-- Video -->
+        <div class="mb-3">
+          <input  class="form-control" appFormControlValidationMsg validationMsgId="video" formControlName="video" placeholder="Video Link">
+        </div>
+        
+        <div class="mb-3">
+          <input class="form-control" appFormControlValidationMsg validationMsgId="date" formControlName="date" type="date">
+        </div>
+        
+    
+        <!-- Add note button -->
+        <div class="text-center">
+          <button mdbBtn color="info" appFormSubmitValidationMsg [validationControl]="noteForm" (click)="addNote()" class="my-4 mx-auto" type="submit" >Add</button>
+        </div>
+  
+      </form>
+    <!-- Note form ends-->
+    
+    </div>
+    
+  </div>
+  
+</div>
