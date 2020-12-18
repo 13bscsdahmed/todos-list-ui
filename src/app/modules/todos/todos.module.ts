@@ -8,7 +8,7 @@ import { TodosComponent } from './components/todos/todos.component';
 import { BoardComponent } from './components/board/board.component';
 import { ReportsComponent } from './components/reports/reports.component';
 
-import { notesReducer } from '../../store/notes/notes.reducer';
+import { todosReducer } from '../../store/notes/todos.reducer';
 import { features } from '../../store/features/features';
 
 /**
@@ -24,7 +24,7 @@ import { features } from '../../store/features/features';
     CommonModule,
     TodosRoutingModule,
     SharedModule,
-    StoreModule.forFeature(features.notes, notesReducer)
+    StoreModule.forFeature(features.todos, todosReducer)
   ]
 })
 export class TodosModule { }

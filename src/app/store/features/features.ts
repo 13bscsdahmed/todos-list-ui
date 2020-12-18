@@ -1,4 +1,4 @@
 export const features = {
-  notes: 'notes'
+  todos: 'todos'
 };
 
