@@ -13,13 +13,13 @@ import { appRoutes } from './config/app-routes.constants';
 export class AppComponent {
   links: NavbarModel[] = [
     {
-      label: 'Add Note',
-      link: `${appRoutes.diary.root}/${appRoutes.diary.note}`,
+      label: 'Board',
+      link: `${appRoutes.todos.root}/${appRoutes.todos.board}`,
       activeClass: 'active'
     },
     {
-      label: 'History',
-      link: `${appRoutes.diary.root}/${appRoutes.diary.history}`,
+      label: 'Reports',
+      link: `${appRoutes.todos.root}/${appRoutes.todos.reports}`,
       activeClass: 'active'
     }
   ];

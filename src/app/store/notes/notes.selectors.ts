@@ -7,8 +7,8 @@ import * as fromNotes from './notes.reducer';
 export const selectNotesState = createFeatureSelector<NotesState>(features.notes);
 
 /**
- * Get note by id selector
- * @param [id] - Id of note
+ * Get board by id selector
+ * @param [id] - Id of board
  */
 export const getNoteById = (id: string) => createSelector(
   selectNotesState,

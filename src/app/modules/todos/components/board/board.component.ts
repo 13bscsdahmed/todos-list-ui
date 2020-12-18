@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 
 /**
- * Component to add new notes
+ * Board component
  */
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class BoardComponent implements OnInit {
  
   constructor() { }
 

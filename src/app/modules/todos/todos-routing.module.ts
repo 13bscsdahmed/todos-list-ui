@@ -3,29 +3,29 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { appRoutes } from '../../config/app-routes.constants';
 
-import { DiaryComponent } from './components/diary/diary.component';
-import { HistoryComponent } from './components/history/history.component';
-import { NoteComponent } from './components/note/note.component';
+import { TodosComponent } from './components/todos/todos.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { BoardComponent } from './components/board/board.component';
 
 const routes: Routes = [
   {
     // Define parent route and component
     path: '',
-    component: DiaryComponent,
+    component: TodosComponent,
     // Define child routes and respective components
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: appRoutes.diary.note,
+        redirectTo: appRoutes.todos.board,
       },
       {
-        path: appRoutes.diary.note,
-        component: NoteComponent,
+        path: appRoutes.todos.board,
+        component: BoardComponent,
       },
       {
-        path: appRoutes.diary.history,
-        component: HistoryComponent,
+        path: appRoutes.todos.reports,
+        component: ReportsComponent,
       },
     ]
   },
@@ -38,4 +38,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DiaryRoutingModule { }
+export class TodosRoutingModule { }

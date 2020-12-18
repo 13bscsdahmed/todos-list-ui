@@ -7,7 +7,7 @@ import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { NoteModel } from './models/note.model';
 import { NotesActions, NotesActionsTypes } from './notes.actions';
 
-// Create adapter for note entity
+// Create adapter for board entity
 const noteAdapter = createEntityAdapter<NoteModel>({
   selectId: (note: NoteModel) => note.id,
   sortComparer: false, // Disable sorting

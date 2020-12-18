@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
  * Dairy module container component
  */
 @Component({
-  selector: 'app-diary',
-  templateUrl: './diary.component.html',
-  styleUrls: ['./diary.component.scss']
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.scss']
 })
-export class DiaryComponent implements OnInit {
+export class TodosComponent implements OnInit {
 
   constructor() { }
 
