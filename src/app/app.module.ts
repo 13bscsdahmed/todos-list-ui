@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 import { constants } from './config/app.constants';
 import { metaReducers, reducers } from './reducers';
+import { HttpClientModule } from '@angular/common/http';
 
 
 /**
@@ -28,6 +29,7 @@ import { metaReducers, reducers } from './reducers';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ToastrModule.forRoot(

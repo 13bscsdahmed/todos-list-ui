@@ -1,61 +1,22 @@
-
 <div class="d-flex">
-  <div class="droppable task-container">
+  <div *ngFor="let list of lists" class="droppable task-container">
+    <p>{{list.title}}</p>
+    <!--Drop area for list starts-->
     <div class="example-origin"
          (dragover)="onDragOver($event);"
-         (drop)="onDrop($event);">
-      <div
-        id="draggable-1"
-        class="draggable"
-        draggable="true"
-        (dragstart)="onDragStart($event);">
-        draggable1
-      </div>
+         (drop)="onDrop($event, list._id_);">
       
-      <div
-        id="draggable-2"
-        class="draggable"
-        draggable="true"
-        (dragstart)="onDragStart($event);">
-        draggable2
-      </div>
+        <!-- Todos list starts-->
+        <div *ngFor="let todo of listTodos(list._id_)"
+             id="draggable-{{todo._id_}}"
+             class="draggable"
+             draggable="true"
+             (dragstart)="onDragStart($event, todo._id_, todo.listId);">
+          {{todo.title}}
+        </div>
+    <!-- Todos list ends -->
     </div>
-    
-    <!--<div-->
-    <!--  class="example-dropzone"-->
-    <!--  (dragover)="onDragOver($event);"-->
-    <!--  (drop)="onDrop($event);">-->
-    <!--  dropzone-->
-    <!--</div>-->
-  </div>
-  
-  <div class="droppable review-container">
-    <div class="example-origin"
-         (dragover)="onDragOver($event);"
-         (drop)="onDrop($event);">
-      <div
-        id="draggable-3"
-        class="draggable"
-        draggable="true"
-        (dragstart)="onDragStart($event);">
-        draggable3
-      </div>
-      
-      <div
-        id="draggable-4"
-        class="draggable"
-        draggable="true"
-        (dragstart)="onDragStart($event);">
-        draggable4
-      </div>
-    </div>
-    
-    <!--<div-->
-    <!--  class="example-dropzone"-->
-    <!--  (dragover)="onDragOver($event);"-->
-    <!--  (drop)="onDrop($event);">-->
-    <!--  dropzone-->
-    <!--</div>-->
+  <!-- Drop area for list ends-->
   </div>
 </div>
 

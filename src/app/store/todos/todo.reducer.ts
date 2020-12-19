@@ -4,36 +4,38 @@
  * modifications for each action as a case
  */
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
-import { TodosListModel } from './models/todos.model';
-import { TodosActions, TodosActionsTypes } from './todos.actions';
+import { TodoModel } from './models/todo.model';
+import { TodoActions, TodoActionsTypes } from './todo.actions';
 
 // Create adapter for board entity
-const todoAdapter = createEntityAdapter<TodosListModel>({
-  selectId: (todoList: TodosListModel) => todoList.id,
+const todoAdapter = createEntityAdapter<TodoModel>({
+  selectId: (todo: TodoModel) => todo._id_,
   sortComparer: false, // Disable sorting
 });
 
 // Define basic Monitor Connection State
-export interface TodosState extends EntityState<TodosListModel> {}
+export interface TodoState extends EntityState<TodoModel> {}
 
 
 
 
 // Initialize State
-const initialState: TodosState = todoAdapter.getInitialState({});
+const initialState: TodoState = todoAdapter.getInitialState({});
 
-export function todosReducer(
+export function todoReducer(
   state = initialState,
-  action: TodosActions,
-): TodosState {
+  action: TodoActions,
+): TodoState {
   switch (action.type) {
-    case TodosActionsTypes.ADD_TODO_LIST:
+    case TodoActionsTypes.ADD_TODO:
       return todoAdapter.addOne(action.payload, state);
-    case TodosActionsTypes.UPDATE_TODO_LIST:
+    case TodoActionsTypes.UPDATE_TODO:
       return todoAdapter.updateOne({
-        id: action.id,
+        id: action._id_,
         changes: action.payload, // change the fields as are in this object
       }, state);
+    case TodoActionsTypes.SET_TODOS:
+      return todoAdapter.setAll(action.payload, state);
     default:
       return state;
   }

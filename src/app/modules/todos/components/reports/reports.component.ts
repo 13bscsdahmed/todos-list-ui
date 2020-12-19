@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 /**
- * Todos reports component. Shows all the past notes
+ * Todos reports component. Shows all the past list
  */
 @Component({
   selector: 'app-report',
