@@ -17,6 +17,7 @@ import { AddListDialogComponent } from './dialogs/add-list-dialog/add-list-dialo
 import { BoardHeaderComponent } from './components/board-header/board-header.component';
 import { AddTodoDialogComponent } from './dialogs/add-todo-dialog/add-todo-dialog.component';
 import { TodoDialogComponent } from './dialogs/todo-dialog/todo-dialog.component';
+import { ReportService } from './services/report.service';
 
 /**
  * Diary Module
@@ -41,6 +42,7 @@ import { TodoDialogComponent } from './dialogs/todo-dialog/todo-dialog.component
   providers: [
     ListService,
     TodoService,
+    ReportService
   ],
   entryComponents: [
     AddListDialogComponent,

@@ -6,6 +6,7 @@ export const apiUrls = {
   baseUrl: env.apiBaseUrl,
   endpoints: {
     lists: '/lists',
-    todos: '/todos'
+    todos: '/todos',
+    taskCompletedPerDay: '/reports/tasks-completed-per-day',
   }
 };

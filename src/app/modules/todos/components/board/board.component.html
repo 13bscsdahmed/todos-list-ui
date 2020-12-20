@@ -15,6 +15,7 @@
     <div *ngFor="let list of lists" class="droppable task-container mh-100">
       <!--Drop area for list starts-->
       <div class="example-origin"
+           id="droppable-{{list._id_}}"
            (dragover)="onDragOver($event);"
            (drop)="onDrop($event, list._id_);">
         

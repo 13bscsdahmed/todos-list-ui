@@ -1,4 +1,15 @@
-<div>
-  history
-</div>
+<div class="text-center">
+  <h2>
+    Avg tasks Completed per day. (Last updated: {{lastUpdatedTime | date:'MMM d, y, h:mm:ss a'}})
+  </h2>
+  <div class="d-flex report-container">
+    <div class="col-md-4 col-sm-6 mt-3" *ngFor="let report of reports">
+      <mat-card>
+        <p>Date: <b>{{report.date}}</b></p>
+        <p>Tasks Completed: <b>{{report.total}}</b></p>
+      </mat-card>
+    </div>
+  </div>
+  
 
+</div>

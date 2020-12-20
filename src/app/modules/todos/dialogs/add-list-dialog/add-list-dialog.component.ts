@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../services/list.service';
 import { Store } from '@ngrx/store';
-import { UpdateTodo } from '../../../../store/todos/todo.actions';
 import { constants } from '../../../../config/app.constants';
 import { AddList } from '../../../../store/list/list.actions';
 import { ToastrService } from 'ngx-toastr';
