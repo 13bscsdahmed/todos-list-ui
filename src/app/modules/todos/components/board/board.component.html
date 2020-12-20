@@ -2,9 +2,17 @@
   <div class="mw-100 board-header d-flex justify-content-center">
     <app-board-header></app-board-header>
   </div>
-  <div class="d-flex">
-    <div *ngFor="let list of lists" class="droppable task-container">
-      <p>{{list.title}}</p>
+  
+  <div class="d-flex list mw-100 pb-2">
+    <div class="d-flex list-headers align-items-center justify-content-center" *ngFor="let list of lists">
+      <span class="list-title font-weight-bold">{{list.title}}</span>
+      <mat-icon (click)="openAddTodoDialog(list._id_)" aria-hidden="false" matTooltip="Add Todo" class="ml-2">add</mat-icon>
+      <mat-icon matTooltip="Delete List" aria-hidden="false" class="ml-2">delete</mat-icon>
+    </div>
+  </div>
+  
+  <div class="d-flex board-container">
+    <div *ngFor="let list of lists" class="droppable task-container mh-100">
       <!--Drop area for list starts-->
       <div class="example-origin"
            (dragover)="onDragOver($event);"
@@ -15,8 +23,10 @@
              id="draggable-{{todo._id_}}"
              class="draggable"
              draggable="true"
+             (click)="openTodoDialog(todo)"
              (dragstart)="onDragStart($event, todo._id_, todo.listId);">
           {{todo.title}}
+          <mat-icon matTooltip="Delete Todo" aria-hidden="false" class="ml-2" (click)="onDeleteTodo(todo._id_, $event)">delete</mat-icon>
         </div>
         <!-- Todos list ends -->
       </div>

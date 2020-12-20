@@ -6,10 +6,14 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllTodos } from '../../../../store/todos/todo.selector';
-import { AddTodo, SetTodos, UpdateTodo } from '../../../../store/todos/todo.actions';
+import { AddTodo, DeleteTodo, SetTodos, UpdateTodo } from '../../../../store/todos/todo.actions';
 import { TodoService } from '../../services/todo.service';
 import { constants } from '../../../../config/app.constants';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTodoDialogComponent } from '../../dialogs/add-todo-dialog/add-todo-dialog.component';
+import { TodoDialogComponent } from '../../dialogs/todo-dialog/todo-dialog.component';
+import { AddList } from '../../../../store/list/list.actions';
 
 
 /**
@@ -28,6 +32,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   constructor(private store: Store,
               private todoService: TodoService,
               private toastrService: ToastrService,
+              private dialog: MatDialog
               ) { }
 
   ngOnInit(): void {
@@ -123,6 +128,49 @@ export class BoardComponent implements OnInit, OnDestroy {
    */
   listTodos(listId: string): Array<TodoModel> {
     return this.todos.filter(todo => todo.listId === listId);
+  }
+  
+  /**
+   * Function opens add todo dialog
+   */
+  openAddTodoDialog(listId: string) {
+    const addTodoDialogRef = this.dialog.open(AddTodoDialogComponent, {
+      closeOnNavigation: true,
+      disableClose: false,
+      hasBackdrop: true,
+      data: {
+        listId
+      }
+    });
+    return addTodoDialogRef;
+  }
+  
+  /**
+   * Function opens todo dialog
+   */
+  openTodoDialog(todo: TodoModel) {
+    const todoDialogRef = this.dialog.open(TodoDialogComponent, {
+      closeOnNavigation: true,
+      disableClose: false,
+      hasBackdrop: true,
+      width: '400px',
+      data: {
+        ...todo
+      }
+    });
+    return todoDialogRef;
+  }
+  
+  onDeleteTodo(todoId: string, event: any) {
+    const answer = window.confirm('Are you sure you want to delete the selected todo?');
+    if (answer) {
+      this.todoService.deleteTodo(todoId).subscribe( (res) => {
+        this.store.dispatch(new DeleteTodo(todoId));
+      }, (err) => {
+        this.toastrService.error('An error occurred deleting todo.', constants.toast.types.errorToast);
+      });
+    }
+    event.stopPropagation();
   }
   
   ngOnDestroy(): void {

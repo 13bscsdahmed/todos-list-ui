@@ -14,7 +14,7 @@ export class BoardHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  onOpenDialog() {
+  openAddListDialog() {
     const dialogRef = this.dialog.open(AddListDialogComponent, {
       closeOnNavigation: true,
       disableClose: false,
@@ -22,5 +22,6 @@ export class BoardHeaderComponent implements OnInit {
     });
     return dialogRef;
   }
+  
 
 }

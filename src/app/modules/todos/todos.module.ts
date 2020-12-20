@@ -15,6 +15,8 @@ import { todoReducer } from '../../store/todos/todo.reducer';
 import { TodoService } from './services/todo.service';
 import { AddListDialogComponent } from './dialogs/add-list-dialog/add-list-dialog.component';
 import { BoardHeaderComponent } from './components/board-header/board-header.component';
+import { AddTodoDialogComponent } from './dialogs/add-todo-dialog/add-todo-dialog.component';
+import { TodoDialogComponent } from './dialogs/todo-dialog/todo-dialog.component';
 
 /**
  * Diary Module
@@ -25,7 +27,9 @@ import { BoardHeaderComponent } from './components/board-header/board-header.com
     BoardComponent,
     ReportsComponent,
     AddListDialogComponent,
-    BoardHeaderComponent
+    BoardHeaderComponent,
+    AddTodoDialogComponent,
+    TodoDialogComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { BoardHeaderComponent } from './components/board-header/board-header.com
     TodoService,
   ],
   entryComponents: [
-    AddListDialogComponent
+    AddListDialogComponent,
+    AddTodoDialogComponent,
+    TodoDialogComponent
   ]
 })
 export class TodosModule { }
