@@ -36,6 +36,8 @@ export function listReducer(
       }, state);
     case ListActionsTypes.SET_LISTS:
       return listAdapter.setAll(action.payload, state);
+    case ListActionsTypes.DELETE_LIST:
+      return listAdapter.removeOne(action._id_, state);
     default:
       return state;
   }

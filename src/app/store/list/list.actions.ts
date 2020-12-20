@@ -9,7 +9,8 @@ import { ListModel } from './models/list.model';
 export enum ListActionsTypes {
   ADD_LIST = '[LIST] Add List',
   UPDATE_LIST = '[LIST] Update List',
-  SET_LISTS = '[LIST] Set Lists'
+  SET_LISTS = '[LIST] Set Lists',
+  DELETE_LIST = '[LIST] Delete List'
 }
 
 // Defining Provision Actions
@@ -28,6 +29,11 @@ export class SetLists implements Action {
   constructor(public payload: Array<ListModel>) {}
 }
 
+export class DeleteList implements Action {
+  readonly type = ListActionsTypes.DELETE_LIST;
+  constructor(public _id_: string) {}
+}
+
 
 // Defining types for list Actions
-export type ListActions = SetLists | AddList | UpdateList;
+export type ListActions = SetLists | AddList | UpdateList | DeleteList;

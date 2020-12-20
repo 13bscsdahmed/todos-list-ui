@@ -38,6 +38,8 @@ export function todoReducer(
       return todoAdapter.setAll(action.payload, state);
     case TodoActionsTypes.DELETE_TODO:
       return todoAdapter.removeOne(action._id_, state);
+    case TodoActionsTypes.DELETE_TODOS_BY_LIST_ID:
+      return todoAdapter.removeMany(action.listId, state);
     default:
       return state;
   }

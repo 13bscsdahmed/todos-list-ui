@@ -7,7 +7,7 @@
     <div class="d-flex list-headers align-items-center justify-content-center" *ngFor="let list of lists">
       <span class="list-title font-weight-bold">{{list.title}}</span>
       <mat-icon (click)="openAddTodoDialog(list._id_)" aria-hidden="false" matTooltip="Add Todo" class="ml-2">add</mat-icon>
-      <mat-icon matTooltip="Delete List" aria-hidden="false" class="ml-2">delete</mat-icon>
+      <mat-icon (click)="onDeleteList(list._id_)" matTooltip="Delete List" aria-hidden="false" class="ml-2">delete</mat-icon>
     </div>
   </div>
   

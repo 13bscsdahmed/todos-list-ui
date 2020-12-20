@@ -5,7 +5,7 @@ import { TodoService } from '../../services/todo.service';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TodoModel } from '../../../../store/todos/models/todo.model';
-import { AddTodo, UpdateTodo } from '../../../../store/todos/todo.actions';
+import { UpdateTodo } from '../../../../store/todos/todo.actions';
 import { constants } from '../../../../config/app.constants';
 import { UpdateTodoModel } from '../../../shared/models/todos.model';
 
@@ -38,8 +38,10 @@ export class TodoDialogComponent implements OnInit {
     this.todoForm.controls.dueDateTime.setValue(new Date(this.todo.dueDateTime));
   }
   
+  /**
+   * Update todo function
+   */
   updateTodo() {
-    console.log(this.todoForm.controls.completionStatus.value);
     const updateBody: UpdateTodoModel = {
       listId: this.todo.listId,
       title: this.todoForm.controls.title.value,
@@ -50,7 +52,7 @@ export class TodoDialogComponent implements OnInit {
     this.todoService.updateTodo(this.todo._id_, updateBody).subscribe( (res) => {
       this.store.dispatch(new UpdateTodo(this.todo._id_, res.data));
     }, (err) => {
-      this.toastrService.error('An error occurred adding todo.', constants.toast.types.errorToast);
+      this.toastrService.error('An error occurred updating todo.', constants.toast.types.errorToast);
     });
   }
 

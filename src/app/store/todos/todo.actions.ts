@@ -10,7 +10,8 @@ export enum TodoActionsTypes {
   ADD_TODO = '[TODO] Add Todo',
   UPDATE_TODO = '[TODO] Update Todos',
   SET_TODOS = '[TODO] Set Todos',
-  DELETE_TODO = '[TODO] Delete Todos'
+  DELETE_TODO = '[TODO] Delete Todo',
+  DELETE_TODOS_BY_LIST_ID = '[TODO] Delete Todos By List Id'
 }
 
 // Defining Provision Actions
@@ -34,6 +35,11 @@ export class DeleteTodo implements Action {
   constructor(public _id_: string) {}
 }
 
+export class DeleteTodos implements Action {
+  readonly type = TodoActionsTypes.DELETE_TODOS_BY_LIST_ID;
+  constructor(public listId: string[]) {}
+}
+
 
 // Defining types for todos Actions
-export type TodoActions = AddTodo | UpdateTodo | SetTodos | DeleteTodo;
+export type TodoActions = AddTodo | UpdateTodo | SetTodos | DeleteTodo | DeleteTodos;

@@ -36,4 +36,16 @@ export class ListService {
       })
     );
   }
+  /**
+   * Function to delete list
+   */
+  deleteList(listId: string): Observable<ApiResModel<{}>> {
+    const urlString = apiUrls.baseUrl + apiUrls.endpoints.lists + '/' + listId;
+    return this.http.delete<ApiResModel<{}>>(urlString)
+    .pipe(
+      catchError((error: Error) => {
+        return throwError(error);
+      })
+    );
+  }
 }

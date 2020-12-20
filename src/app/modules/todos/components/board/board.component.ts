@@ -6,14 +6,15 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllTodos } from '../../../../store/todos/todo.selector';
-import { AddTodo, DeleteTodo, SetTodos, UpdateTodo } from '../../../../store/todos/todo.actions';
+import { DeleteTodo, DeleteTodos, UpdateTodo } from '../../../../store/todos/todo.actions';
 import { TodoService } from '../../services/todo.service';
 import { constants } from '../../../../config/app.constants';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialogComponent } from '../../dialogs/add-todo-dialog/add-todo-dialog.component';
 import { TodoDialogComponent } from '../../dialogs/todo-dialog/todo-dialog.component';
-import { AddList } from '../../../../store/list/list.actions';
+import { ListService } from '../../services/list.service';
+import { DeleteList } from '../../../../store/list/list.actions';
 
 
 /**
@@ -32,7 +33,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   constructor(private store: Store,
               private todoService: TodoService,
               private toastrService: ToastrService,
-              private dialog: MatDialog
+              private dialog: MatDialog,
+              private listService: ListService
               ) { }
 
   ngOnInit(): void {
@@ -166,11 +168,34 @@ export class BoardComponent implements OnInit, OnDestroy {
     if (answer) {
       this.todoService.deleteTodo(todoId).subscribe( (res) => {
         this.store.dispatch(new DeleteTodo(todoId));
+        this.toastrService.success('Todo deleted successfully.', constants.toast.types.successToast);
       }, (err) => {
         this.toastrService.error('An error occurred deleting todo.', constants.toast.types.errorToast);
       });
     }
     event.stopPropagation();
+  }
+  
+  /**
+   * Function to delete list
+   */
+  onDeleteList(listId: string) {
+    const answer = window.confirm('Are you sure you want to delete the selected list?');
+    if (answer) {
+      const todoIdsToDelete: Array<string> = [];
+      this.todos.forEach((todo) => {
+        if (todo.listId === listId) {
+          todoIdsToDelete.push(todo._id_);
+        }
+      });
+      this.listService.deleteList(listId).subscribe( (res) => {
+        this.store.dispatch(new DeleteList(listId));
+        this.store.dispatch(new DeleteTodos(todoIdsToDelete));
+        this.toastrService.success('List deleted successfully.', constants.toast.types.successToast);
+      }, (err) => {
+        this.toastrService.error('An error occurred deleting list.', constants.toast.types.errorToast);
+      });
+    }
   }
   
   ngOnDestroy(): void {
