@@ -1,11 +1,15 @@
-<div class="d-flex">
-  <div *ngFor="let list of lists" class="droppable task-container">
-    <p>{{list.title}}</p>
-    <!--Drop area for list starts-->
-    <div class="example-origin"
-         (dragover)="onDragOver($event);"
-         (drop)="onDrop($event, list._id_);">
-      
+<div>
+  <div class="mw-100 board-header d-flex justify-content-center">
+    <app-board-header></app-board-header>
+  </div>
+  <div class="d-flex">
+    <div *ngFor="let list of lists" class="droppable task-container">
+      <p>{{list.title}}</p>
+      <!--Drop area for list starts-->
+      <div class="example-origin"
+           (dragover)="onDragOver($event);"
+           (drop)="onDrop($event, list._id_);">
+        
         <!-- Todos list starts-->
         <div *ngFor="let todo of listTodos(list._id_)"
              id="draggable-{{todo._id_}}"
@@ -14,9 +18,11 @@
              (dragstart)="onDragStart($event, todo._id_, todo.listId);">
           {{todo.title}}
         </div>
-    <!-- Todos list ends -->
+        <!-- Todos list ends -->
+      </div>
+      <!-- Drop area for list ends-->
     </div>
-  <!-- Drop area for list ends-->
   </div>
 </div>
+
 

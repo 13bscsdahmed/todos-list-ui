@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Add new list</h2>
+
+
+<mat-dialog-content>
+  <mat-form-field color="accent" class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="title" matInput>
+  </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" (click)="addList()">Create List</button>
+</mat-dialog-actions>

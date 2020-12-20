@@ -13,6 +13,8 @@ import { features } from '../../store/features/features';
 import { ListService } from './services/list.service';
 import { todoReducer } from '../../store/todos/todo.reducer';
 import { TodoService } from './services/todo.service';
+import { AddListDialogComponent } from './dialogs/add-list-dialog/add-list-dialog.component';
+import { BoardHeaderComponent } from './components/board-header/board-header.component';
 
 /**
  * Diary Module
@@ -21,7 +23,9 @@ import { TodoService } from './services/todo.service';
   declarations: [
     TodosComponent,
     BoardComponent,
-    ReportsComponent
+    ReportsComponent,
+    AddListDialogComponent,
+    BoardHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -34,5 +38,8 @@ import { TodoService } from './services/todo.service';
     ListService,
     TodoService,
   ],
+  entryComponents: [
+    AddListDialogComponent
+  ]
 })
 export class TodosModule { }
