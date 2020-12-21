@@ -1,0 +1,55 @@
+.task-container, .review-container {
+  border: 2px solid grey;
+  color: black;
+  display: flex;
+  font-family: sans-serif;
+  font-weight: bold;
+  width: 25%;
+  margin-right: 5px;
+}
+
+.example-origin {
+  flex-basis: 100%;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.draggable {
+  background-color: burlywood;
+  font-weight: normal;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+}
+
+.example-dropzone {
+  background-color: #6DB65B;
+  flex-basis: 100%;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.board-header {
+  padding-top: 20px;
+  height: 80px;
+}
+.list {
+  cursor: pointer;
+  height: 50px;
+  .list-headers {
+    width: 25%;
+    margin-right: 5px;
+  }
+  .list-headers:hover {
+    background-color: gainsboro;
+  }
+}
+.board-container {
+  min-height: 720px;
+}
+.list-title {
+  font-size: 20px;
+}

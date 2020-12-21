@@ -8,6 +8,7 @@ import { FormSubmitValidationMsgDirective } from './directives/formsubmit-valida
 
 import { ValidationMsgService } from './services/validation-msg.service';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material/material.module';
 
 /**
  * Module contains all the shared dependencies
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MDBBootstrapModule,
     RouterModule,
+    MaterialModule
   ],
   exports: [
     FormsModule,
@@ -30,6 +32,7 @@ import { RouterModule } from '@angular/router';
     FormControlValidationMsgDirective,
     FormSubmitValidationMsgDirective,
     MDBBootstrapModule,
+    MaterialModule
     
   ],
   providers: [

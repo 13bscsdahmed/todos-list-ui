@@ -7,21 +7,21 @@ const routes: Routes = [
   { // Redirect '' to public route
     path: '',
     pathMatch: 'full',
-    redirectTo: appRoutes.diary.root,
+    redirectTo: appRoutes.todos.root,
     data : {
       preload: false
     }
   },
-  { // Go to diary route
-    path: appRoutes.diary.root,
+  { // Go to todos route
+    path: appRoutes.todos.root,
     data: {
       preload: true
     },
-    loadChildren: () => import('./modules/diary/diary.module').then(m => m.DiaryModule)
+    loadChildren: () => import('./modules/todos/todos.module').then(m => m.TodosModule)
   },
   { // Redirect in case of wildcards / undefined routes
     path: '**',
-    redirectTo: appRoutes.diary.root
+    redirectTo: appRoutes.todos.root
   }
 ];
 
