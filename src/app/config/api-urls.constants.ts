@@ -4,9 +4,11 @@ import { environment as env } from '../../environments/environment';
 export const apiUrls = {
   // Define Api Base Url
   baseUrl: env.apiBaseUrl,
+  attachmentsBaseUrl: env.attachmentsBaseUrl,
   endpoints: {
     lists: '/lists',
     todos: '/todos',
     taskCompletedPerDay: '/reports/tasks-completed-per-day',
+    attachments: '/attachments',
   }
 };

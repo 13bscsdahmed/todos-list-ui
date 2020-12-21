@@ -8,6 +8,7 @@ import { TodoModel } from '../../../../store/todos/models/todo.model';
 import { UpdateTodo } from '../../../../store/todos/todo.actions';
 import { constants } from '../../../../config/app.constants';
 import { UpdateTodoModel } from '../../../shared/models/todos.model';
+import { apiUrls } from '../../../../config/api-urls.constants';
 
 @Component({
   selector: 'app-todo-dialog',
@@ -17,6 +18,9 @@ import { UpdateTodoModel } from '../../../shared/models/todos.model';
 export class TodoDialogComponent implements OnInit {
   
   todo: TodoModel;
+  file: File;
+  extensionError = false;
+  apiUrls = apiUrls;
   
   todoForm = new FormGroup({
     title: new FormControl(null, [Validators.required]),
@@ -54,6 +58,33 @@ export class TodoDialogComponent implements OnInit {
     }, (err) => {
       this.toastrService.error('An error occurred updating todo.', constants.toast.types.errorToast);
     });
+  }
+  
+  /**
+   * Function sets model value to the file uploaded
+   *  @Param event: $event
+   * returns null
+   */
+  addFile(event: any) {
+    this.file = event.target.files[0];
+    const extension = this.file.name.substr(this.file.name.lastIndexOf('.'), this.file.name.length);
+    if ( extension === '.png' || extension === '.jpg' || extension === '.jpeg' ) {
+      this.todoService.uploadAttachment(this.todo._id_, this.file).subscribe( (res) => {
+        this.store.dispatch(new UpdateTodo(this.todo._id_, res.data));
+        this.todo.attachments = res.data.attachments;
+      }, (err) => {
+        this.toastrService.error('An error occurred uploading attachment.', constants.toast.types.errorToast);
+      });
+    } else {
+      this.extensionError = true;
+    }
+  }
+  
+  /**
+   * Opens image in new tab
+   */
+  openImage(link: string) {
+    window.open(link, '_blank');
   }
 
 }

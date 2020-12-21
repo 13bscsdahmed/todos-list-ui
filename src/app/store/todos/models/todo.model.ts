@@ -7,5 +7,5 @@ export interface TodoModel {
   dueDateTime?: number;
   completionDateTime?: number;
   completionStatus: boolean;
-  attachment?: Array<string>;
+  attachments?: Array<string>;
 }

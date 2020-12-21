@@ -39,6 +39,20 @@
     </div>
   
   </form>
+  
+  <div>
+    <h3>Attachments</h3>
+    <div class="img-div" *ngIf="todo.attachments && todo.attachments.length > 0">
+      <div *ngFor="let attachment of todo.attachments">
+        <img class="img" (click)="openImage(apiUrls.attachmentsBaseUrl + '/' + attachment)" src="{{apiUrls.attachmentsBaseUrl}}/{{attachment}}">
+      </div>
+      
+    </div>
+  </div>
+  
+  <input #fileUpload (change)="addFile($event)" type="file" onclick="this.value=null"
+         accept=".png, .jpg, .jpeg">
+  <p *ngIf="extensionError">Only .jpg, .jpeg and .png files are allowed</p>
 
 </mat-dialog-content>
 

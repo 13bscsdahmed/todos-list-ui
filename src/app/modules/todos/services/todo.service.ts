@@ -61,4 +61,18 @@ export class TodoService {
       })
     );
   }
+  /**
+   * Function to upload attachments.
+   */
+  uploadAttachment(todoId: string, file: File): Observable<ApiResModel<TodoModel>> {
+    const urlString = apiUrls.baseUrl + apiUrls.endpoints.todos + '/' + todoId + apiUrls.endpoints.attachments;
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.post<ApiResModel<TodoModel>>(urlString, formData)
+    .pipe(
+      catchError((error: Error) => {
+        return throwError(error);
+      })
+    );
+  }
 }
